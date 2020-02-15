@@ -14,7 +14,7 @@ class Source(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('created', 'name')
 
 
 class Transaction(models.Model):
@@ -25,6 +25,12 @@ class Transaction(models.Model):
         ('+', 'Income'),
         ('-', 'Expense')
     )
+
+    tx_id = models.AutoField(
+        primary_key=True,
+        verbose_name="Transaction Id"
+    )
+
     created = models.DateTimeField(
         verbose_name="Creation Time",
         auto_now_add=True, null=False)
@@ -56,14 +62,14 @@ class Transaction(models.Model):
     )
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('created', 'tx_type', 'amount', 'from_or_to')
 
 
 class Balance(models.Model):
     """
     Save the Total Amount on per month basis
     """
-    created = models.DateTimeField(
+    created = models.DateField(
         verbose_name="Creation Date",
         unique_for_month=True,
         auto_now_add=True, null=False)
@@ -72,3 +78,22 @@ class Balance(models.Model):
         verbose_name="Total Balance",
         null=False
     )
+
+    def credit(self, amount):
+        """
+        Add to balance
+        :param amount: amount to be added
+        :return: nothing
+        """
+        pass
+
+    def debit(self, amount):
+        """
+        deduct from balance
+        :param amount: amount to be deducted
+        :return: nothing
+        """
+        pass
+
+    class Meta:
+        ordering = ('created')

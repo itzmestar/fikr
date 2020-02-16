@@ -9,7 +9,8 @@ class Source(models.Model):
     """
     created = models.DateTimeField(
         verbose_name="Creation Time",
-        auto_now_add=True, null=False)
+        auto_now_add=True, null=False,
+        editable=True)
 
     name = models.CharField(max_length=100, verbose_name="Name")
 
@@ -33,7 +34,9 @@ class Transaction(models.Model):
 
     created = models.DateTimeField(
         verbose_name="Creation Time",
-        auto_now_add=True, null=False)
+        auto_now_add=False,
+        null=False,
+        editable=True)
 
     tx_type = models.CharField(
         choices=TRANS_TYPE,
@@ -73,7 +76,9 @@ class Balance(models.Model):
     created = models.DateField(
         verbose_name="Creation Date",
         unique_for_month=True,
-        auto_now_add=True, null=False)
+        auto_now_add=True,
+        null=False,
+        editable=True)
 
     amount = models.IntegerField(
         verbose_name="Total Balance",

@@ -14,6 +14,9 @@ class Source(models.Model):
 
     name = models.CharField(max_length=100, verbose_name="Name")
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         ordering = ('created', 'name')
 
@@ -65,6 +68,29 @@ class Transaction(models.Model):
         verbose_name='Transaction Description'
     )
 
+    def save(self, *args, **kwargs):
+        # save transaction
+        super().save(*args, **kwargs)
+
+        # update balance for the transaction
+        try:
+            balance = Balance.objects.latest('created')
+            # if older transaction entry added then do not manipulate balance
+            if balance.created > self.created:
+                return
+            #add new balance entry
+            if self.tx_type == '+':
+                new_amount = balance.amount + self.amount
+            else:
+                new_amount = balance.amount - self.amount
+            new_balance = Balance(amount=new_amount)
+            new_balance.save()
+        except Balance.DoesNotExist:
+            # first entry to balance table
+            balance = Balance(amount=self.amount)
+            balance.save()
+
+
     class Meta:
         ordering = ['created', 'tx_type', 'amount', 'from_or_to']
 
@@ -73,7 +99,7 @@ class Balance(models.Model):
     """
     Save the Total Amount on per month basis
     """
-    created = models.DateField(
+    created = models.DateTimeField(
         verbose_name="Creation Date",
         unique_for_month=True,
         auto_now_add=True,
@@ -84,6 +110,9 @@ class Balance(models.Model):
         verbose_name="Total Balance",
         null=False
     )
+
+    def __str__(self):
+        return str(self.amount)
 
     def credit(self, amount):
         """

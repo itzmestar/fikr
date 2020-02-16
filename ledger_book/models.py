@@ -39,6 +39,7 @@ class Transaction(models.Model):
         choices=TRANS_TYPE,
         default='+',
         verbose_name="Transaction Type",
+        max_length=7
         )
 
     from_or_to = models.ForeignKey(
@@ -62,7 +63,7 @@ class Transaction(models.Model):
     )
 
     class Meta:
-        ordering = ('created', 'tx_type', 'amount', 'from_or_to')
+        ordering = ['created', 'tx_type', 'amount', 'from_or_to']
 
 
 class Balance(models.Model):
@@ -96,4 +97,4 @@ class Balance(models.Model):
         pass
 
     class Meta:
-        ordering = ('created')
+        ordering = ['created']

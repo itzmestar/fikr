@@ -101,7 +101,7 @@ class Balance(models.Model):
     """
     created = models.DateTimeField(
         verbose_name="Creation Date",
-        unique_for_month=True,
+        #unique_for_month=True,
         auto_now_add=True,
         null=False,
         editable=True)
@@ -131,4 +131,4 @@ class Balance(models.Model):
         pass
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']

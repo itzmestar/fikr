@@ -11,4 +11,5 @@ class TransactionSerializer(serializers.ModelSerializer):
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Balance
-        fields = ['created', 'amount']
+        #fields = ['created', 'amount']
+        fields = '__all__'

@@ -5,7 +5,8 @@ from .models import Transaction, Balance
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['tx_id', 'created', 'tx_type', 'from_or_to', 'amount', 'description']
+        #fields = ['tx_id', 'created', 'tx_type', 'source', 'amount', 'description']
+        '__all__'
 
 
 class BalanceSerializer(serializers.ModelSerializer):

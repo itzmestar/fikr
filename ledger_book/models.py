@@ -21,6 +21,24 @@ class Source(models.Model):
         ordering = ('created', 'name')
 
 
+class Person(models.Model):
+    """
+    Person's information for income/Expense
+    """
+    created = models.DateTimeField(
+        verbose_name="Creation Time",
+        auto_now_add=True, null=False,
+        editable=True)
+
+    name = models.CharField(max_length=100, verbose_name="Name")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('created', 'name')
+
+
 class Transaction(models.Model):
     """
     Save each donation/expense transaction
@@ -48,12 +66,20 @@ class Transaction(models.Model):
         max_length=7
         )
 
-    from_or_to = models.ForeignKey(
+    source = models.ForeignKey(
         Source,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
         verbose_name="Source"
+    )
+
+    person = models.ForeignKey(
+        Person,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name="Person"
     )
 
     amount = models.IntegerField(
@@ -92,7 +118,7 @@ class Transaction(models.Model):
 
 
     class Meta:
-        ordering = ['created', 'tx_type', 'amount', 'from_or_to']
+        ordering = ['created', 'tx_type', 'amount', 'source', 'person']
 
 
 class Balance(models.Model):

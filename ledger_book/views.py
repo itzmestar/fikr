@@ -18,7 +18,7 @@ def balance_view(request):
 # Create your views here.
 
 
-class BalanaceView(ListAPIView):
+class BalanceView(ListAPIView):
     """
     View to get balance & balance history
     """
@@ -34,3 +34,5 @@ class TransactionView(ListCreateAPIView):
 
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+

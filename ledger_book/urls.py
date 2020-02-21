@@ -4,7 +4,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 app_name = 'ledger_book'
 urlpatterns = [
-    #path('tx/', views.balance_view),
+    path('tx/', views.TransactionView.as_view()),
     path('balance/', views.BalanaceView.as_view()),
 ]
 

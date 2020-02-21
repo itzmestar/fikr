@@ -3,10 +3,13 @@ from .models import Transaction, Balance
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    source = serializers.StringRelatedField()
+    person = serializers.StringRelatedField()
     class Meta:
         model = Transaction
-        #fields = ['tx_id', 'created', 'tx_type', 'source', 'amount', 'description']
-        fields = '__all__'
+        fields = ['tx_id', 'created', 'tx_type', 'source', 'person', 'amount', 'description']
+        #fields = '__all__'
+        #depth = 1
 
 
 class BalanceSerializer(serializers.ModelSerializer):

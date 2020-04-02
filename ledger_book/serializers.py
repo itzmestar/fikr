@@ -8,12 +8,11 @@ class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = ['tx_id', 'created', 'tx_type', 'source', 'person', 'amount', 'description']
-        #fields = '__all__'
-        #depth = 1
+        # fields = '__all__'
 
 
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Balance
-        #fields = ['created', 'amount']
-        fields = '__all__'
+        fields = ['created', 'amount']
+        # fields = '__all__'

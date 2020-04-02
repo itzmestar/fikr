@@ -55,7 +55,7 @@ class Transaction(models.Model):
 
     created = models.DateTimeField(
         verbose_name="Creation Time",
-        auto_now_add=False,
+        auto_now_add=True,
         null=False,
         editable=True)
 

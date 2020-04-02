@@ -18,6 +18,17 @@ def balance_view(request):
 # Create your views here.
 
 
+def index(request):
+    tx_list = Transaction.objects.all()
+    context = {
+        'tx_list': tx_list,
+    }
+    return render(request, 'ledger_book/index.html', context)
+
+
+# API views:
+
+
 class BalanceView(ListAPIView):
     """
     View to get balance & balance history

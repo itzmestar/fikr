@@ -16,8 +16,7 @@ Ledger_book app is django app to keep track of financial transaction of a small 
 
 
 ## check the live demo:
-http://fmrch.xyz/api/tx/
 
-http://fmrch.xyz/api/balance/
+https://ec2-13-126-57-98.ap-south-1.compute.amazonaws.com/api/tx/
 
-
+https://ec2-13-126-57-98.ap-south-1.compute.amazonaws.com/api/balance/

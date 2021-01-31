@@ -7,6 +7,9 @@ import time
 
 
 class TransactionTest(TestCase):
+    """
+    Tests for Transaction Model
+    """
     def create_tx(self, tx_type="+", amount=500, description="Testing Tx"):
         return Transaction.objects.create(tx_type=tx_type, amount=amount, description=description)
 
@@ -20,6 +23,9 @@ class TransactionTest(TestCase):
 
 
 class BalanceTest(TestCase):
+    """
+    Tests for Balance Model
+    """
     def setUp(self):
         self.create_tx()
 

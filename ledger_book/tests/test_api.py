@@ -11,6 +11,9 @@ import time
 
 
 class TransactionViewTests(APITestCase):
+    """
+    Tests for Transaction View
+    """
     user = 'test'
     password = 'test123'
     url = reverse('ledger_book:tx')
@@ -66,6 +69,9 @@ class TransactionViewTests(APITestCase):
 
 
 class BalanceViewTests(APITestCase):
+    """
+    Tests for Balance View
+    """
     user = 'test'
     password = 'test123'
     url = reverse('ledger_book:balance')

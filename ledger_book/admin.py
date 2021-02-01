@@ -13,7 +13,7 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 class TransactionAdmin(admin.ModelAdmin):
-    fields = ['created', 'tx_type', 'person', 'source', 'amount', 'description']
+    fields = ['tx_type', 'person', 'source', 'amount', 'description']
     list_display = ('created', 'tx_type', 'person', 'source', 'amount', 'description')
     list_filter = ['created', 'tx_type', 'person', 'source']
 

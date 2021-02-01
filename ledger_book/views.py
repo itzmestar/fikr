@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
-from .models import Balance, Transaction
+from .models import Source, Person, Balance, Transaction
+from .serializers import SourceSerializer, PersonSerializer
 from .serializers import BalanceSerializer, TransactionSerializer
 
 from django.http import HttpResponse, JsonResponse
@@ -27,6 +28,24 @@ def index(request):
 
 
 # API views:
+
+
+class SourceView(ListAPIView):
+    """
+    View to get Source & Source creation history
+    """
+
+    queryset = Source.objects.all()
+    serializer_class = SourceSerializer
+
+
+class PersonView(ListAPIView):
+    """
+    View to get Person & Person creation history
+    """
+
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
 
 
 class BalanceView(ListAPIView):

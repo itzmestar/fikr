@@ -71,7 +71,8 @@ class Transaction(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name="Source"
+        verbose_name="Source",
+
     )
 
     person = models.ForeignKey(
